@@ -2,15 +2,16 @@ import path from "path";
 import { app } from "../index";
 import supertest from "supertest";
 import { imageFunction1, imageFunction2 } from "../routes/api/processingImages";
+import { Server } from "http";
 
 const request = supertest(app);
 
 describe("Port test", () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let server: any;
+  let server: Server;
   beforeEach((done) => {
-    //Testing another Port
-    server = app.listen(5500, done);
+    server = app.listen(5500, () => {
+      done();
+    });
   });
 
   afterEach((done) => {

@@ -18,11 +18,11 @@ const supertest_1 = __importDefault(require("supertest"));
 const processingImages_1 = require("../routes/api/processingImages");
 const request = (0, supertest_1.default)(index_1.app);
 describe("Port test", () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let server;
     beforeEach((done) => {
-        //Testing another Port
-        server = index_1.app.listen(5500, done);
+        server = index_1.app.listen(5500, () => {
+            done();
+        });
     });
     afterEach((done) => {
         server.close(done);
